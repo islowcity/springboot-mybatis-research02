@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace命名空间,作用就是对sql进行分类化的管理,理解为sql隔离
+    注意:使用mapper代理开发时，namespace有特殊作用,namespace等于mapper接口地址
+ -->
+<mapper namespace="slowcity.com.mapper.OrdersCustomMapper">
+        <!-- 查询订单，关联查询用户信息 -->
+    <select id="findOrdersUser" resultType="slowcity.com.entity.OrdersCustom">
+    SELECT t1.*,
+        t2.username,
+        t2.sex,
+        t2.address
+    FROM
+        orders t1,
+        t_user t2
+    WHERE t1.user_id=t2.id
+    </select>
+</mapper>
